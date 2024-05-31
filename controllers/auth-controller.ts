@@ -9,8 +9,8 @@ dotenv.config();
 const secretKey = 'juano'; 
 let auth = async (req: Request, res: Response) => {
   try {
-    const { nombrebarber, password } = req.body;
-    const login = await UserRepository.login(new Auth(nombrebarber, password));
+    const { email, password } = req.body;
+    const login = await UserRepository.login(new Auth(email, password));
     if (login.logged) {
       return res.status(200).json({
         status: login.status,

@@ -1,11 +1,11 @@
 class Auth {
-    nombrebarber: string;
+    email: string;
     password: string
     constructor(
         email: string,
         password: string
     ) {
-        this.nombrebarber = email;
+        this.email= email;
         this.password = password
     }
 }

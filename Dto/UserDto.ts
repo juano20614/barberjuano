@@ -38,7 +38,7 @@ class User {
 }
 
  get apellidos(): string {
-    return this.apellidos;
+    return this._apellidos;
 }
 
 get nombrebarber(): string {
@@ -72,7 +72,7 @@ set nombres(nombres: string) {
 }
 
 set apellidos(apellidos: string) {
-    this._apellidos = apellidos;
+    this._apellidos =apellidos;
 }
 
 set nombrebarber( nombrebarber:string) {

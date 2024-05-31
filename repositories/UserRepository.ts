@@ -7,13 +7,13 @@ class UserRepository {
 
     static async add(user: User){
         const sql = 'INSERT INTO users (email, nombres, apellidos,nombrebarber,horario, direccion, telefono, password) VALUES (?,?,?,?,?,?,?,?)';
-        const values = [user.email, user.nombres,user.apellidos,user.nombrebarber,user.horario, user.direccion,  user.telefono, user.password];
+        const values = [user.email, user.nombres,user.apellidos,user.nombrebarber,user.horario, user.direccion, user.telefono, user.password];
         return db.execute(sql, values);
     }
 
     static async login(auth: Auth){
-      const sql = 'SELECT password FROM users WHERE nombrebarber=?';
-      const values = [auth.nombrebarber];
+      const sql = 'SELECT password FROM users WHERE email=?';
+      const values = [auth.email];
       const result: any = await db.execute(sql, values);
       if (result[0].length > 0){
         const isPasswordValid = await bcrypt.compare(auth.password, result[0][0].password);
@@ -26,8 +26,8 @@ class UserRepository {
   }
 
           static async verytoken(user: User){
-            const sql = 'SELECT * FROM users WHERE nombrebarber =?'
-            const values = [user.nombrebarber];
+            const sql = 'SELECT * FROM users WHERE email =?'
+            const values = [user.email];
             return db.execute(sql, values);
         }
     }
